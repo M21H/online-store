@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Context } from '.'
-import NavBar from './components/NavBar'
+import { NavBar } from './components'
 import { NotFound } from './pages/NotFound'
 import { authRoutes, publicRoutes } from './routes'
 

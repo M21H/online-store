@@ -13,9 +13,14 @@ export const NotFound = () => {
 			}}>
 			<h1>
 				<center> PAGE NOT FOUND 404</center>
+				<h6>
+					<center>
+						<i>What are you looking for...</i>
+					</center>
+				</h6>
 			</h1>
 			<NavLink to='/'>
-				<p>go to main page</p>
+				<p style={{ paddingTop: 20 }}>Go to main page</p>
 			</NavLink>
 		</div>
 	)
