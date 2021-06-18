@@ -7,7 +7,6 @@ import { authRoutes, publicRoutes } from './routes'
 
 export const App = () => {
 	const { user } = React.useContext(Context)
-	console.log(user)
 	return (
 		<>
 			<NavBar />
@@ -20,7 +19,7 @@ export const App = () => {
 				{publicRoutes.map(({ path, Component }) => (
 					<Route key={path} path={path} component={Component} exact />
 				))}
-				<Route path='/' component={NotFound} />
+				<Route path='*' component={NotFound} />
 			</Switch>
 		</>
 	)
