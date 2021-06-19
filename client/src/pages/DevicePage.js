@@ -1,8 +1,11 @@
 import React from 'react'
 import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap'
 import bigStar from '../assets/icons/big-star.svg'
+import { useHistory } from 'react-router-dom'
 
 const DevicePage = () => {
+	const history = useHistory()
+
 	const device = {
 		id: 8,
 		name: 'Apple 12 pro',
@@ -46,7 +49,14 @@ const DevicePage = () => {
 						className='d-flex flex-column align-items-center justify-content-around'
 						style={{ width: 300, height: 300, fontSize: 32, border: '5px solid lightgrey' }}>
 						<h3>from: {device.price} &#36;</h3>
-						<Button variant='outline-dark'>Add to cart</Button>
+						<Row>
+							<Button variant='outline-dark' className='m-1'>
+								Add to cart
+							</Button>
+							<Button variant='outline-dark' className='m-1' onClick={() => history.push('/')}>
+								Go back
+							</Button>
+						</Row>
 					</Card>
 				</Col>
 			</Row>

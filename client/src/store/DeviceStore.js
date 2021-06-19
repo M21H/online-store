@@ -4,7 +4,7 @@ export default class DeviceStore {
 	constructor() {
 		this._types = [
 			{ id: 1, name: 'Refrigerators' },
-			{ id: 2, name: 'Smatphones' },
+			{ id: 2, name: 'Smartphones' },
 			{ id: 3, name: 'Laptops' },
 			{ id: 4, name: 'Smart TV' },
 		]
