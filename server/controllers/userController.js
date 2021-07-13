@@ -3,10 +3,8 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { User, Basket } = require('../models/models')
 
-const genetateJwt = (id, email, role) => {
-	return jwt.sign({ id, email, role }, process.env.SECRET_KEY, {
-		expiresIn: '24h',
-	})
+const generateJwt = (id, email, role) => {
+	return jwt.sign({ id, email, role }, process.env.SECRET_KEY, { expiresIn: '24h' })
 }
 
 class UserController {
@@ -22,7 +20,7 @@ class UserController {
 		const hashPassword = await bcrypt.hash(password, 5)
 		const user = await User.create({ email, role, password: hashPassword })
 		const basket = await Basket.create({ userId: user.id })
-		const token = genetateJwt(user.id, user.email, user.role)
+		const token = generateJwt(user.id, user.email, user.role)
 		return res.json({ token })
 	}
 
@@ -36,13 +34,12 @@ class UserController {
 		if (!comparePassword) {
 			return next(ApiError.internal('Password not valid'))
 		}
-		const token = genetateJwt(user.id, user.email, user.role)
+		const token = generateJwt(user.id, user.email, user.role)
 		return res.json({ token })
 	}
 
 	async check(req, res, next) {
-		res.json({ message: 'ALL RIGHT' })
-		const token = genetateJwt(req.user.id, req.user.email, req.user.role)
+		const token = generateJwt(req.user.id, req.user.email, req.user.role)
 		return res.json({ token })
 	}
 }

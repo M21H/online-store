@@ -1,12 +1,30 @@
 import React from 'react'
+import { observer } from 'mobx-react-lite'
 import { Switch, Route } from 'react-router-dom'
 import { Context } from '.'
 import { NavBar } from './components'
 import { NotFound } from './pages/NotFound'
 import { authRoutes, publicRoutes } from './routes'
+import { check } from './http/userAPI'
+import { Spinner } from 'react-bootstrap'
 
-export const App = () => {
+export const App = observer(() => {
 	const { user } = React.useContext(Context)
+	const [loading, setLoading] = React.useState(true)
+
+	React.useEffect(() => {
+		check()
+			.then(data => {
+				user.setUser(true)
+				user.setIsAuth(true)
+			})
+			.finally(() => setLoading(false))
+	}, [])
+
+	if (loading) {
+		return <Spinner animation='grow' />
+	}
+
 	return (
 		<>
 			<NavBar />
@@ -23,4 +41,4 @@ export const App = () => {
 			</Switch>
 		</>
 	)
-}
+})

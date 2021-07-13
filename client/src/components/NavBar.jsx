@@ -10,11 +10,16 @@ const NavBar = observer(() => {
 	const { user } = React.useContext(Context)
 	const history = useHistory()
 
+	const logOut = () => {
+		user.setUser({})
+		user.setIsAuth(false)
+	}
+
 	return (
 		<Navbar bg='dark' variant='dark'>
 			<Container>
 				<NavLink to='/' style={{ color: 'white' }}>
-					Best Shop.by
+					BestShop.by
 				</NavLink>
 				<Nav className='ml-auto' style={{ color: 'white' }}>
 					{user.isAuth ? (
@@ -22,15 +27,12 @@ const NavBar = observer(() => {
 							<Button variant='outline-light' onClick={() => history.push(ADMIN_ROUTE)}>
 								Admin panel
 							</Button>
-							<Button
-								variant='outline-light'
-								onClick={() => history.push(LOGIN_ROUTE)}
-								className='ml-2'>
-								Sign out
+							<Button variant='outline-light' onClick={logOut} className='ml-2'>
+								Log out
 							</Button>
 						</>
 					) : (
-						<Button variant='outline-light' onClick={() => user.setIsAuth(true)}>
+						<Button variant='outline-light' onClick={() => history.push(LOGIN_ROUTE)}>
 							Authorize
 						</Button>
 					)}

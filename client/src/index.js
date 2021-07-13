@@ -9,16 +9,16 @@ import DeviceStore from './store/DeviceStore'
 export const Context = React.createContext(null)
 
 ReactDOM.render(
-	<React.StrictMode>
-		<BrowserRouter>
-			<Context.Provider
-				value={{
-					user: new UserStore(),
-					device: new DeviceStore(),
-				}}>
-				<App />
-			</Context.Provider>
-		</BrowserRouter>
-	</React.StrictMode>,
+	// <React.StrictMode>
+	<BrowserRouter>
+		<Context.Provider
+			value={{
+				user: new UserStore(),
+				device: new DeviceStore(),
+			}}>
+			<App />
+		</Context.Provider>
+	</BrowserRouter>,
+	// </React.StrictMode>,
 	document.getElementById('root')
 )

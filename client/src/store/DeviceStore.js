@@ -2,79 +2,14 @@ import { makeAutoObservable } from 'mobx'
 
 export default class DeviceStore {
 	constructor() {
-		this._types = [
-			{ id: 1, name: 'Refrigerators' },
-			{ id: 2, name: 'Smartphones' },
-			{ id: 3, name: 'Laptops' },
-			{ id: 4, name: 'Smart TV' },
-		]
-		this._brands = [
-			{ id: 1, name: 'Samsung' },
-			{ id: 2, name: 'Apple' },
-			{ id: 3, name: 'Lenovo' },
-			{ id: 4, name: 'Honor' },
-			{ id: 5, name: 'Xiaomi' },
-		]
-		this._devices = [
-			{
-				id: 1,
-				name: 'Apple 12 pro',
-				price: 1200,
-				rating: 0,
-				img: 'https://i1.foxtrot.com.ua/product/MediumImages/6612158_0.jpg',
-			},
-			{
-				id: 2,
-				name: 'Apple 12 pro',
-				price: 1200,
-				rating: 0,
-				img: 'https://i1.foxtrot.com.ua/product/MediumImages/6612158_0.jpg',
-			},
-			{
-				id: 3,
-				name: 'Apple 12 pro',
-				price: 1200,
-				rating: 0,
-				img: 'https://i1.foxtrot.com.ua/product/MediumImages/6612158_0.jpg',
-			},
-			{
-				id: 4,
-				name: 'Apple 12 pro',
-				price: 1200,
-				rating: 0,
-				img: 'https://i1.foxtrot.com.ua/product/MediumImages/6612158_0.jpg',
-			},
-			{
-				id: 5,
-				name: 'Apple 12 pro',
-				price: 1200,
-				rating: 0,
-				img: 'https://i1.foxtrot.com.ua/product/MediumImages/6612158_0.jpg',
-			},
-			{
-				id: 6,
-				name: 'Apple 12 pro',
-				price: 1200,
-				rating: 0,
-				img: 'https://i1.foxtrot.com.ua/product/MediumImages/6612158_0.jpg',
-			},
-			{
-				id: 7,
-				name: 'Apple 12 pro',
-				price: 1200,
-				rating: 0,
-				img: 'https://i1.foxtrot.com.ua/product/MediumImages/6612158_0.jpg',
-			},
-			{
-				id: 8,
-				name: 'Apple 12 pro',
-				price: 1200,
-				rating: 0,
-				img: 'https://i1.foxtrot.com.ua/product/MediumImages/6612158_0.jpg',
-			},
-		]
+		this._types = []
+		this._brands = []
+		this._devices = []
 		this._selectedType = {}
 		this._selectedBrand = {}
+		this._page = 1
+		this._totalCount = 0
+		this._limit = 3
 		makeAutoObservable(this)
 	}
 
@@ -91,11 +26,37 @@ export default class DeviceStore {
 	}
 
 	setSelectedType(type) {
+		this.setPage(1)
 		this._selectedType = type
 	}
 
 	setSelectedBrand(brand) {
+		this.setPage(1)
 		this._selectedBrand = brand
+	}
+
+	setPage(page) {
+		this._page = page
+	}
+
+	setTotalCount(count) {
+		this._totalCount = count
+	}
+
+	setLimit(limit) {
+		this._limit = limit
+	}
+
+	get getPage() {
+		return this._page
+	}
+
+	get totalCount() {
+		return this._totalCount
+	}
+
+	get limit() {
+		return this._limit
 	}
 
 	get types() {
